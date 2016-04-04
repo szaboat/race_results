@@ -1,8 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import csv
 import datetime
+import time
 
 from django.test import TestCase
 
 # Create your tests here.
+from .helpers import get_time_in_seconds
 from .models import Athlete, Club, Race, Lap, Result
 
 
@@ -42,3 +48,29 @@ class TestViews(TestCase):
         response = self.client.get('/2015/matramaraton/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Matramaraton")
+
+
+class CSVLoadTestCase(TestCase):
+    def test(self):
+        """
+            [ ] TODO status
+            [ ] TODO category
+        """
+        race = Race.objects.create(name="Bonyhad", short_name="bonyhad", url="http://akarmi.hu", date=datetime.date(2016,04,03), type='ROAD', location="Bonyhad")
+        with open('../data/bonyhad16_veg.csv') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                athlete = Athlete.objects.create(name=row['Name'], uci_number=row['UCI'])
+                club = Club.objects.create(name=row['Club'])
+
+                if row['Result'] == 'DNF' or row['Result'] == '':
+                    time_in_seconds = -1
+                    position = -1
+                else:
+                    time_in_seconds = get_time_in_seconds(row['Time'])
+                    position = row['Result']
+
+                Result.objects.create(race=race, club=club, athlete=athlete,
+                                      total_time=time_in_seconds, position=position,
+                                      race_number=row['Number'], imported_at=datetime.date.today(),
+                                      category=row['Cat'].strip())

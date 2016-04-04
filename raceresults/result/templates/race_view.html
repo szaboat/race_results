@@ -1,1 +1,7 @@
-<pre>{{ race.name }}</pre>
+<h1>{{ race.name }}</h1>
+
+<pre>
+{% for result in results %}
+    {{ result.position }}, {{ result.athlete.name }}, {{ result.category }}, {{ result.club.name }}, {{ result.time }}
+{% endfor %}
+</pre>

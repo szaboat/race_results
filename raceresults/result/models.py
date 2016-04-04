@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import time
+
 from django.db import models
 
 # Create your models here.
@@ -8,7 +10,7 @@ from django.db import models
 class Athlete(models.Model):
     name = models.CharField(max_length=30)
     year_of_birth = models.IntegerField(default=0)
-    uci_number = models.CharField(max_length=20)
+    uci_number = models.CharField(max_length=20, null=True, blank=True)
 
 
 class Club(models.Model):
@@ -46,7 +48,16 @@ class Result(models.Model):
     status = models.CharField(choices=status_types, max_length=3)
     athlete = models.ForeignKey('Athlete')
     race = models.ForeignKey('Race')
+    club = models.ForeignKey('Club', null=True, blank=True)
     total_time = models.IntegerField()
     position = models.IntegerField()
     race_number = models.CharField(max_length=5)
     imported_at = models.DateTimeField()
+    category = models.CharField(max_length=20, null=True, blank=True)
+
+    @property
+    def time(self):
+        if self.total_time != -1:
+            m, s = divmod(self.total_time, 60)
+            h, m = divmod(m, 60)
+            return '%s:%s:%s' % (h,m,s)
