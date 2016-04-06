@@ -1,7 +1,48 @@
-<h1>{{ race.name }}</h1>
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<pre>
-{% for result in results %}
-    {{ result.position }}, {{ result.athlete.name }}, {{ result.category }}, {{ result.club.name }}, {{ result.time }}
-{% endfor %}
-</pre>
+</head>
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>{{ race.name }}</h1>
+    </div>
+</div>
+
+<div class="container">
+    {% for result_by_category in results_by_category %}
+        <div class="page-header">
+            <h1>{{ result_by_category.category }}</h1>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Club name</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+        {% for result in result_by_category.results %}
+            <tr>
+                <td>{{ result.position }}</td>
+                <td>{{ result.athlete.name }}</td>
+                <td>{{ result.category }}</td>
+                <td>{{ result.club.name }}</td>
+                <td>{{ result.time }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+
+    <footer>
+        <p>Raceresults 2016</p>
+    </footer>
+</html>
