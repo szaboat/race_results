@@ -1,0 +1,24 @@
+<html>
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</head>
+
+<div class="jumbotron">
+    <div class="container">
+        {% block header %}{% endblock %}
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+
+    <footer>
+        <p>Raceresults 2016</p>
+    </footer>
+</div>
+</html>

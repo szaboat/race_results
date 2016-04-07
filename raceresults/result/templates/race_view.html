@@ -1,15 +1,6 @@
-<html>
-<head>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</head>
+{% extends 'layout.html' %}
 
-<div class="jumbotron">
-    <div class="container">
+{% block header %}
         <h1>{{ race.name }}</h1>
         <h2>{{ race.date }}</h2>
         <dl>
@@ -20,10 +11,9 @@
             <dt>Type</dt>
             <dd>{{ race.type }}</dd>
         </dl>
-    </div>
-</div>
+{% endblock %}
 
-<div class="container">
+{% block content %}
     {% for result_by_category in results_by_category %}
         <div class="page-header">
             <h1>{{ result_by_category.category }}</h1>
@@ -41,7 +31,7 @@
         {% for result in result_by_category.results %}
             <tr>
                 <td>{{ result.position }}</td>
-                <td>{{ result.athlete.name }}</td>
+                <td><a href="/athlete/{{ result.athlete.id }}/">{{ result.athlete.name }}</a></td>
                 <td>{{ result.category }}</td>
                 <td>{{ result.club.name }}</td>
                 <td>{{ result.time }}</td>
@@ -49,8 +39,4 @@
         {% endfor %}
         </table>
     {% endfor %}
-
-    <footer>
-        <p>Raceresults 2016</p>
-    </footer>
-</html>
+{% endblock %}

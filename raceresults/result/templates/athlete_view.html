@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+    <h1>{{ athlete.name }}</h1>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Race</th>
+            <th>Position</th>
+            <tH>Name</tH>
+            <th>Category</th>
+            <th>Club name</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        {% for result in results %}
+            <tr>
+                <td>{{ result.race.name }} {{ result.race.date }}</td>
+                <td>{{ result.position }}</td>
+                <td><a href="/athlete/{{ result.athlete.id }}/">{{ result.athlete.name }}</a></td>
+                <td>{{ result.category }}</td>
+                <td>{{ result.club.name }}</td>
+                <td>{{ result.time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

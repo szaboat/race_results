@@ -1,5 +1,5 @@
 from django.template.response import TemplateResponse
-from .models import Race, Result
+from .models import Race, Result, Athlete
 
 
 def race_view(request, year, name):
@@ -16,3 +16,14 @@ def race_view(request, year, name):
     }
 
     return TemplateResponse(request, 'race_view.html', context)
+
+
+def athlete_profile(request, athlete_id):
+    athlete = Athlete.objects.get(id=athlete_id)
+    results = Result.objects.filter(athlete_id=athlete.id)
+    context = {
+        'athlete': athlete,
+        'results': results
+    }
+
+    return TemplateResponse(request, 'athlete_view.html', context)
