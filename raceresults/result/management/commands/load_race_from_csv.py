@@ -2,7 +2,7 @@ import csv
 
 import datetime
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from ...models import Race, Club, Athlete, Result
 from ...helpers import get_time_in_seconds
 

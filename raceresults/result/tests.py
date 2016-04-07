@@ -3,7 +3,6 @@
 
 import csv
 import datetime
-import time
 
 from django.test import TestCase
 
@@ -52,10 +51,6 @@ class TestViews(TestCase):
 
 class CSVLoadTestCase(TestCase):
     def test(self):
-        """
-            [ ] TODO status
-            [ ] TODO category
-        """
         race = Race.objects.create(name="Bonyhad", short_name="bonyhad", url="http://akarmi.hu", date=datetime.date(2016,04,03), type='ROAD', location="Bonyhad")
         with open('../data/bonyhad16_veg.csv') as csvfile:
             reader = csv.DictReader(csvfile)
