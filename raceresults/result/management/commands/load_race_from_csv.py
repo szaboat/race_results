@@ -14,12 +14,12 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        race = Race.objects.create(name="Bonyhad", short_name="bonyhad", url="http://akarmi.hu", date=datetime.date(2016,04,03), type='ROAD', location="Bonyhad")
+        race = Race.objects.get(pk=2)
         with open('../data/bonyhad16_veg.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                athlete = Athlete.objects.create(name=row['Name'], uci_number=row['UCI'])
-                club = Club.objects.create(name=row['Club'])
+                athlete, _ = Athlete.objects.get_or_create(name=row['Name'], uci_number=row['UCI'])
+                club, _ = Club.objects.get_or_create(name=row['Club'])
 
                 if row['Result'] == 'DNF' or row['Result'] == '':
                     time_in_seconds = -1
