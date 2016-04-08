@@ -33,7 +33,7 @@
                 <td>{{ result.position }}</td>
                 <td><a href="/athlete/{{ result.athlete.id }}/">{{ result.athlete.name }}</a></td>
                 <td>{{ result.category }}</td>
-                <td>{{ result.club.name }}</td>
+                <td><a href="/club/{{ result.club.id }}/">{{ result.club.name }}</a></td>
                 <td>{{ result.time }}</td>
             </tr>
         {% endfor %}
