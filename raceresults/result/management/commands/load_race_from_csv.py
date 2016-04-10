@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8
 import csv
 
 import datetime
@@ -14,11 +16,11 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        race = Race.objects.get(pk=2)
-        with open('../data/bonyhad16_veg.csv') as csvfile:
+        race = Race.objects.create(name="XXV. Stop cukrászda időfuam - Tarján, 2016.04.10.", short_name="stop-cukraszda", date=datetime.date.today(), type='ROAD',  location="Tarján", url="http://velo.hu/2016/stop-cukraszda-idofutam.html")
+        with open('../data/stop_cukraszda_2016.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                athlete, _ = Athlete.objects.get_or_create(name=row['Name'], uci_number=row['UCI'])
+                athlete, _ = Athlete.objects.get_or_create(name=row['Name'])
                 club, _ = Club.objects.get_or_create(name=row['Club'])
 
                 if row['Result'] == 'DNF' or row['Result'] == '':

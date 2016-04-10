@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+    <h1>Raceresults</h1>
+{% endblock %}}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Url</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        {% for race in races %}
+            <tr>
+                <td><a href="/2016/{{ race.short_name }}/">{{ race.name }}</a></td>
+                <td>{{ race.location }}</td>
+                <td><a href="{{ race.url }}">{{ race.url }}</a></td>
+                <td>{{ race.date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

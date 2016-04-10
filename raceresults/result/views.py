@@ -38,3 +38,11 @@ def club_view(request, club_id):
     }
 
     return TemplateResponse(request, 'club.html', context)
+
+
+def races_view(request):
+    context = {
+        'races': Race.objects.all()
+    }
+
+    return TemplateResponse(request, 'races.html', context)
