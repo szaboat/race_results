@@ -36,6 +36,7 @@ class Race(models.Model):
     )
     type = models.CharField(max_length=4, choices=type_choices)
     location = models.CharField(max_length=255)
+    description = models.TextField(null=True, blank=True)
 
 
 class Result(models.Model):
