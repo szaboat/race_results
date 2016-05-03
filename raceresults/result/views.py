@@ -42,7 +42,7 @@ def club_view(request, club_id):
 
 def races_view(request):
     context = {
-        'races': Race.objects.all()
+        'races': Race.objects.all().order_by('date')
     }
 
     return TemplateResponse(request, 'races.html', context)
