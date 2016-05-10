@@ -1,5 +1,8 @@
 from django.template.response import TemplateResponse
+from django.utils.safestring import mark_safe
+
 from .models import Race, Result, Athlete, Club
+from .htmlcalendar import RaceCalendar
 
 
 def race_view(request, year, name):
@@ -46,3 +49,9 @@ def races_view(request):
     }
 
     return TemplateResponse(request, 'races.html', context)
+
+
+def calendar(request):
+    races = Race.objects.order_by('date').filter(date__year=2016)
+    cal = RaceCalendar(races).formatyear(theyear=2016, width=1)
+    return TemplateResponse(request, 'calendar.html', {'calendar': mark_safe(cal),})

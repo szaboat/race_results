@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+    <h1>Calendar</h1>
+{% endblock %}
+
+{% block content %}
+    <style>
+        table {
+            width: 100%;
+            border-spacing: 0.5em;
+            border-collapse: separate;
+        }
+        td {
+            width: 6em;
+            height: 6em;
+            margin: 0.5em;
+            padding: 1em;
+        }
+        th.month {
+            font-size: 1.4em;
+            padding: 1em 0;
+        }
+        .month tr td {
+            background: #fafafa;
+        }
+    </style>
+    {{ calendar }}
+{% endblock %}
