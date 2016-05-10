@@ -39,6 +39,9 @@ class Race(models.Model):
     location = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
 
+    def get_absolute_url(self):
+        return "/{year}/{name}/".format(year=self.date.year, name=self.short_name)
+
 
 class Result(models.Model):
     status_types = (
