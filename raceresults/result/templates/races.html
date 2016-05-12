@@ -8,21 +8,42 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Name</th>
+            <th class="col-md-5">Name</th>
             <th>Location</th>
             <th>Url</th>
-            <th>Type</th>
+            <th class="col-md-1">Type</th>
             <th>Date</th>
         </tr>
         </thead>
         {% for race in races %}
             <tr>
-                <td><a href="/2016/{{ race.short_name }}/">{{ race.name }}</a></td>
+                <td class="col-md-5"><a href="/2016/{{ race.short_name }}/">{{ race.name }}</a></td>
                 <td>{{ race.location }}</td>
                 <td><a href="{{ race.url }}">{{ race.url }}</a></td>
-                <td>{{ race.type }}</td>
+                <td class="col-md-1"><span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></td>
                 <td>{{ race.date }}</td>
             </tr>
         {% endfor %}
     </table>
+    <style>
+        table {
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+        .xcu {
+            background-color: #307976;
+        }
+        .xco {
+            background-color: #6b7ee7;
+        }
+        .road {
+            background-color: #dd593e;
+        }
+        .xcm {
+            background-color: #9fa21c;
+        }
+        .tour {
+            background-color: #a3a98f;
+        }
+    </style>
 {% endblock %}
