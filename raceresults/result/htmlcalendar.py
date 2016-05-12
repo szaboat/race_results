@@ -20,11 +20,12 @@ class RaceCalendar(HTMLCalendar):
             _date = datetime.date(self.year, self.month, day)
             if _date in self.races:
                 cssclass += ' filled'
-                body = ['<br/>']
+                body = ['<ul>']
                 for race in self.races[_date]:
-                    body.append('<a href="{url}">'.format(url=race.get_absolute_url()))
+                    body.append('<li><a href="{url}">'.format(type=race.type, url=race.get_absolute_url()))
                     body.append(esc(race.name))
-                    body.append('</a>')
+                    body.append('</a></li>')
+                body.append('</ul>')
                 return self.day_cell(cssclass, '%d %s' % (day, ''.join(body)))
             return self.day_cell(cssclass, day)
         return self.day_cell('noday', '&nbsp;')
