@@ -1,3 +1,5 @@
+import datetime
+
 from django.template.response import TemplateResponse
 from django.utils.safestring import mark_safe
 
@@ -43,11 +45,19 @@ def club_view(request, club_id):
     return TemplateResponse(request, 'club.html', context)
 
 
-def races_view(request):
-    context = {
-        'races': Race.objects.all().order_by('date')
-    }
+def races_view(request, filter=None):
+    if filter == 'all':
+        races = Race.objects.all().order_by('date')
+    elif filter:
+        races = Race.objects.filter(type=filter.upper()).order_by('date')
+    else:
+        races = Race.objects.filter(date__gt=datetime.date.today()).order_by('date')
 
+    race_types = Race.type_choices
+    context = {
+        'races': races,
+        'types': race_types
+    }
     return TemplateResponse(request, 'races.html', context)
 
 

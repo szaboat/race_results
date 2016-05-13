@@ -5,6 +5,13 @@
 {% endblock %}}
 
 {% block content %}
+    <ul class="list-inline">
+        <li><a href="/races/all/"><span class="label label-default">ALL EVENTS</span></a></li>
+        {% for type in types %}
+            <li><a href="/races/{{ type.0|lower }}/"><span class="label label-default {{type.0|lower }}">{{ type.0 }}</span></a></li>
+        {% endfor %}
+    </ul>
+
     <table class="table table-hover">
         <thead>
         <tr>
