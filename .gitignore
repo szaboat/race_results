@@ -2,3 +2,4 @@ virtualenv
 *.iml
 .idea/
 raceresults/static/
+raceresults/db.sqlite3
