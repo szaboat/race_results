@@ -31,7 +31,7 @@
                 <td>{{ race.location }}</td>
                 <td><a href="{{ race.url }}">{{ race.url }}</a></td>
                 <td class="col-md-1"><span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></td>
-                <td>{{ race.date }}</td>
+                <td>{{ race.date|date:"D Y.m.d." }}</td>
             </tr>
         {% endfor %}
     </table>
