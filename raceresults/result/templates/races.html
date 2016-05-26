@@ -17,19 +17,19 @@
 
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th class="col-md-5">Name</th>
-            <th>Location</th>
-            <th class="col-md-1">Type</th>
-            <th>Date</th>
-        </tr>
+            <tr>
+                <th class="col-md-5">Name</th>
+                <th class="col-md-3">Location</th>
+                <th class="col-md-1">Type</th>
+                <th class="col-md-2">Date</th>
+            </tr>
         </thead>
         {% for race in races %}
             <tr>
                 <td class="col-md-5"><a href="/2016/{{ race.short_name }}/">{{ race.name }}</a> <a href="{{ race.url }}/"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a></td>
                 <td>{{ race.location }}</td>
                 <td class="col-md-1"><span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></td>
-                <td><i>{{ race.date|date:"Y-m-d" }}</i></td>
+                <td><i>{{ race.date|date:"Y-m-d D" }}</i></td>
             </tr>
         {% endfor %}
     </table>
