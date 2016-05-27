@@ -42,6 +42,9 @@ class Race(models.Model):
     def get_absolute_url(self):
         return "/{year}/{name}/".format(year=self.date.year, name=self.short_name)
 
+    def __unicode__(self):
+        return "{short_name} /  {date} / {type}".format(short_name=self.name, date=self.date, type=self.type)
+
 
 class Result(models.Model):
     status_types = (
