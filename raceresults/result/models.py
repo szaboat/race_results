@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 import time
 
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -38,6 +40,11 @@ class Race(models.Model):
     type = models.CharField(max_length=4, choices=type_choices)
     location = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+
+    @property
+    def days_to_race(self):
+        delta = datetime.date.today() - self.date
+        return abs(delta.days)
 
     def get_absolute_url(self):
         return "/{year}/{name}/".format(year=self.date.year, name=self.short_name)
