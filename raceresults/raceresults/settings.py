@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-is_prod = 'RDS_DB_NAME' in os.environ
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'wkrlorem(6c2449o3nux!4qi)86c5b0tl(m-$zu8(to_7e5k19'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if is_prod else True
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
