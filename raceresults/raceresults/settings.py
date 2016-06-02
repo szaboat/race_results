@@ -27,7 +27,7 @@ SECRET_KEY = 'wkrlorem(6c2449o3nux!4qi)86c5b0tl(m-$zu8(to_7e5k19'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if is_prod else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.tekerem.hu']
 
 # Application definition
 
