@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'result',
+    'race_calendar',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
