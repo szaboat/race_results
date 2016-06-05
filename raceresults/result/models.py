@@ -44,7 +44,7 @@ class Race(models.Model):
     @property
     def days_to_race(self):
         delta = datetime.date.today() - self.date
-        return abs(delta.days)
+        return delta.days
 
     def get_absolute_url(self):
         return "/{year}/{name}/".format(year=self.date.year, name=self.short_name)
