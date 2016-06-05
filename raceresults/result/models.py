@@ -43,7 +43,7 @@ class Race(models.Model):
 
     @property
     def days_to_race(self):
-        delta = datetime.date.today() - self.date
+        delta = self.date - datetime.date.today()
         return delta.days
 
     def get_absolute_url(self):
