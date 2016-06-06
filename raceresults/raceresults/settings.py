@@ -45,9 +45,18 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'opbeat.contrib.django',
 ]
 
+OPBEAT = {
+    'ORGANIZATION_ID': 'fcb64a12c59843e789b1bb5c7e785091',
+    'APP_ID': '5825acae0b',
+    'SECRET_TOKEN': 'e6418af6a1bdd15fac586877013ac75492fba1a0',
+}
+
+
 MIDDLEWARE_CLASSES = [
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
