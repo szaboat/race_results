@@ -62,7 +62,7 @@ class Result(models.Model):
     )
     status = models.CharField(choices=status_types, max_length=3)
     athlete = models.ForeignKey('Athlete')
-    race = models.ForeignKey('Race')
+    race = models.ForeignKey('Race', on_delete=models.SET_NULL, null=True, blank=True)
     club = models.ForeignKey('Club', null=True, blank=True)
     total_time = models.IntegerField()
     position = models.IntegerField()

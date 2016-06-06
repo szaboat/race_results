@@ -9,4 +9,4 @@ class CalendarItem(models.Model):
     )
     priority = models.CharField(choices=priority_choices, max_length=1)
     user = models.ForeignKey('auth.User')
-    race = models.ForeignKey('result.Race', on_delete=models.SET_NULL, null=True)
+    race = models.ForeignKey('result.Race', on_delete=models.SET_NULL, null=True, blank=True)
