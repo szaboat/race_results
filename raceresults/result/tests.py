@@ -44,7 +44,7 @@ class ResultModelTestCase(TestCase):
 class TestViews(TestCase):
     def test_race_page(self):
         Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2015,8,30), type='XCM', location="Matrahaza")
-        response = self.client.get('/2015/matramaraton/')
+        response = self.client.get('/2015/matramaraton/', follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Matramaraton")
 
