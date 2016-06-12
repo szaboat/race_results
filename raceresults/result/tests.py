@@ -48,6 +48,14 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Matramaraton")
 
+    def test_index_page_should_list_races_from_today(self):
+        Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date.today(), type='XCM', location="Matrahaza")
+        Race.objects.create(name="Duna maraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date.today() + datetime.timedelta(days=20), type='XCM', location="Matrahaza")
+
+        response = self.client.get('/', follow=True)
+        self.assertEqual(len(response.context_data['races']), 2)
+
+
 
 class CSVLoadTestCase(TestCase):
     def test(self):
