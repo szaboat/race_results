@@ -1,16 +1,30 @@
 {% extends 'layout.html' %}
+{% load account %}
 
 {% block header %}
-        <h1>{{ race.name }}</h1>
-        <h2>{{ race.date }}</h2>
-        <ul>
-            <li>Race URL: <a href="{{ race.url }}">{{ race.url }}</a></li>
-            <li>Location: {{ race.location }}</li>
-            <li>Type: <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span> </li>
-        </ul>
+        <div class="pull-left">
+            <h1>{{ race.name }}</h1>
+            <h2>{{ race.date }}</h2>
+            <ul>
+                <li>Race URL: <a href="{{ race.url }}">{{ race.url }}</a></li>
+                <li>Location: {{ race.location }}</li>
+                <li>Type: <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span> </li>
+            </ul>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="pull-right">
+                <button type="button" class="btn btn-default btn-lg btn-disabled" aria-label="Add to calendar" disabled="disabled">
+                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                    Add to my race calendar
+                </button>
+            </div>
+        {% endif %}
 {% endblock %}
 
 {% block content %}
+    {% if results_by_category %}
+        <h1>Results</h1>
+    {% endif %}
     {% for result_by_category in results_by_category %}
         <div class="page-header">
             <h1>{{ result_by_category.category }}</h1>
