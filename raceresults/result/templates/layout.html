@@ -1,3 +1,4 @@
+{% load account %}
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
@@ -28,7 +29,22 @@
             background: yellow;
         }
         .jumbotron h1 {
-            font-weight: bold;
+            font-weight: 500;
+        }
+        .jumbotron p {
+            color: #999;
+        }
+        .navbar {
+            margin-bottom: 0;
+        }
+        .navbar-default {
+            background: none;
+        }
+        .navbar-default .navbar-nav>li>a:hover {
+            background: #f9f9f9;
+        }
+        .label {
+            padding-bottom: .2em;
         }
     </style>
 </head>
@@ -43,6 +59,21 @@
                 <li><a href="/">Events</a></li>
                 <li><a href="/pages/about/">About</a></li>
                 <li><a href="/pages/contact/">Contact</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="/logout/">Log Out</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="/login/">Log In</a>
+                </li>
+                <li>
+                    <a href="/signup/">Sign Up</a>
+                </li>
+            {% endif %}
             </ul>
         </div>
     </div>

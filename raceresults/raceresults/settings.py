@@ -69,7 +69,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'raceresults.urls'
-
+TEMPLATE_DEBUG=True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -164,3 +164,4 @@ if is_prod:
     SECURE_SSL_REDIRECT = True
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
