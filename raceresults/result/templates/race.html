@@ -3,14 +3,11 @@
 {% block header %}
         <h1>{{ race.name }}</h1>
         <h2>{{ race.date }}</h2>
-        <dl>
-            <dt>Url</dt>
-            <dd><a href="{{ race.url }}">{{ race.url }}</a></dd>
-            <dt>Location</dt>
-            <dd>{{ race.location }}</dd>
-            <dt>Type</dt>
-            <dd>{{ race.type }}</dd>
-        </dl>
+        <ul>
+            <li>Race URL: <a href="{{ race.url }}">{{ race.url }}</a></li>
+            <li>Location: {{ race.location }}</li>
+            <li>Type: <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span> </li>
+        </ul>
 {% endblock %}
 
 {% block content %}
