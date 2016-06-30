@@ -38,7 +38,7 @@ def athletes_calendar(request, athlete_id):
     races = [item.race for item in items]
     context = {
         'races': races,
-        'user': User.objects.get(pk=user.id)
+        'athlete_user': User.objects.get(pk=user.id)
     }
 
     return TemplateResponse(request, 'athlete_races.html', context)
