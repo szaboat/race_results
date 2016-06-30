@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block header %}
+    {% include '_race_data.html' with race=race %}
+{% endblock %}
+
+{% block content %}
+    <h1>Add race to your racecalendar</h1>
+    <form action="" method="POST">
+        {{ form.as_ul }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-lg">Add to my calendar</button>
+    </form>
+{% endblock %}

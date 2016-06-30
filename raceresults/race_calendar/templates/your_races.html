@@ -1,0 +1,16 @@
+{% extends 'races.html' %}
+
+{% block header %}
+    <h1>Your races</h1>
+    <p class="lead">
+        Have fun with all these races which you added to your calendar
+    </p>
+{% endblock %}
+
+{% block content %}
+    {% if races %}
+        {{  block.super }}
+    {% else %}
+        <p>You haven't added any race to your calendar</p>
+    {% endif %}
+{% endblock %}

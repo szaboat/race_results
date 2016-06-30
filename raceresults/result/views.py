@@ -1,10 +1,13 @@
 import datetime
 
+from django.apps import apps
 from django.template.response import TemplateResponse
 from django.utils.safestring import mark_safe
 
 from .models import Race, Result, Athlete, Club
 from .htmlcalendar import RaceCalendar
+
+CalendarItem = apps.get_model('race_calendar.CalendarItem')  # WTF?
 
 
 def race_view(request, year, name):
@@ -14,10 +17,13 @@ def race_view(request, year, name):
     results_by_category = [
         {'results': Result.objects.filter(race=race, category=item), 'category': item } for item in categories
     ]
+
+    race_is_in_calendar = len(CalendarItem.objects.filter(race=race, user=request.user))
     context = {
         'race': race,
         'results' : results,
-        'results_by_category': results_by_category
+        'results_by_category': results_by_category,
+        'race_is_in_calendar': race_is_in_calendar
     }
 
     return TemplateResponse(request, 'race.html', context)

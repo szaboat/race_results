@@ -3,21 +3,25 @@
 
 {% block header %}
         <div class="pull-left">
-            <h1>{{ race.name }}</h1>
-            <h2>{{ race.date }}</h2>
-            <ul>
-                <li>Race URL: <a href="{{ race.url }}">{{ race.url }}</a></li>
-                <li>Location: {{ race.location }}</li>
-                <li>Type: <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span> </li>
-            </ul>
+            {% include '_race_data.html' with race=race %}
         </div>
         {% if user.is_authenticated %}
-            <div class="pull-right">
-                <button type="button" class="btn btn-default btn-lg btn-disabled" aria-label="Add to calendar" disabled="disabled">
-                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                    Add to my race calendar
-                </button>
-            </div>
+            {% if race_is_in_calendar %}
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default btn-lg btn-disabled" disabled=disabled aria-label="Add to calendar">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        This race already in your calendar
+                    </button>
+                </div>
+            {% else %}
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default btn-lg" aria-label="Add to calendar">
+                        <a href="{{ race.get_absolute_url }}add/">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Add to my race calendar
+                        </a>
+                    </button>
+                </div>
+            {% endif %}
         {% endif %}
 {% endblock %}
 

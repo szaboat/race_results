@@ -57,6 +57,9 @@
         <div id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">Events</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="/your-races/">Your races</a></li>
+                {% endif %}
                 <li><a href="/pages/about/">About</a></li>
                 <li><a href="/pages/contact/">Contact</a></li>
             </ul>
