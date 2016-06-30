@@ -18,7 +18,10 @@ def race_view(request, year, name):
         {'results': Result.objects.filter(race=race, category=item), 'category': item } for item in categories
     ]
 
-    race_is_in_calendar = len(CalendarItem.objects.filter(race=race, user=request.user))
+    if request.user.is_authenticated():
+        race_is_in_calendar = len(CalendarItem.objects.filter(race=race, user=request.user))
+    else:
+        race_is_in_calendar = None
     context = {
         'race': race,
         'results' : results,
