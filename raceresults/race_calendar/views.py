@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.contrib.auth.models import User
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from .models import CalendarItem
@@ -26,6 +27,21 @@ def add_to_calendar(request, year, name):
     else:
         return HttpResponseBadRequest()
 
+
+def athletes_calendar(request, athlete_id):
+    try:
+        user = User.objects.get(pk=athlete_id)
+    except User.DoesNotExist:
+        return HttpResponseRedirect('/')
+
+    items = CalendarItem.objects.filter(user=user)
+    races = [item.race for item in items]
+    context = {
+        'races': races,
+        'user': User.objects.get(pk=user.id)
+    }
+
+    return TemplateResponse(request, 'athlete_races.html', context)
 
 def your_races(request):
     items = CalendarItem.objects.filter(user=request.user)
