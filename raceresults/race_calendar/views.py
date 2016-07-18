@@ -36,8 +36,10 @@ def athletes_calendar(request, athlete_id):
 
     items = CalendarItem.objects.filter(user=user)
     races = [item.race for item in items]
+    races_sorted_by_date = sorted(races, key=lambda x: x.date)
+
     context = {
-        'races': races,
+        'races': races_sorted_by_date,
         'athlete_user': User.objects.get(pk=user.id)
     }
 

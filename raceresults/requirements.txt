@@ -5,3 +5,4 @@ psycopg2==2.6.1
 django-allauth==0.25.2
 
 opbeat==3.3.2
+django-autofixture==0.12.1
