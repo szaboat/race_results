@@ -45,11 +45,14 @@ def athletes_calendar(request, athlete_id):
 
     return TemplateResponse(request, 'athlete_races.html', context)
 
+
 def your_races(request):
     items = CalendarItem.objects.filter(user=request.user)
     races = [item.race for item in items]
+    races_sorted_by_date = sorted(races, key=lambda x: x.date)
+
     context = {
-        'races': races,
+        'races': races_sorted_by_date,
     }
 
     return TemplateResponse(request, 'your_races.html', context)
