@@ -24,6 +24,19 @@ class Lap(models.Model):
     result = models.ForeignKey('Result')
 
 
+YEAR_CHOICES = []
+for r in range(1980, (datetime.datetime.now().year+1)):
+    YEAR_CHOICES.append((r,r))
+
+
+class Series(models.Model):
+    name = models.CharField(max_length=255)
+    year = models.IntegerField('year', max_length=4, choices=YEAR_CHOICES, default=datetime.datetime.now().year)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Race(models.Model):
     name = models.CharField(max_length=255)
     short_name = models.CharField(max_length=30)
@@ -32,6 +45,7 @@ class Race(models.Model):
     type_choices = (
         ('XCO', 'Olymic Cross Country'),
         ('CX', 'Cyclocross'),
+        ('END', 'Enduro'),
         ('XCM', 'Cross Country Marathon'),
         ('ROAD', 'Road race'),
         ('XCU', 'Cross Country Ultra'),
@@ -40,6 +54,7 @@ class Race(models.Model):
     type = models.CharField(max_length=4, choices=type_choices)
     location = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    series = models.ForeignKey(Series, null=True, blank=True)
 
     @property
     def days_to_race(self):

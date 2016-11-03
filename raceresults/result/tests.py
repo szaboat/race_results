@@ -8,7 +8,7 @@ from django.test import TestCase
 
 # Create your tests here.
 from .helpers import get_time_in_seconds
-from .models import Athlete, Club, Race, Lap, Result
+from .models import Athlete, Club, Race, Lap, Result, Series
 
 
 class AthleteModelTestCase(TestCase):
@@ -41,6 +41,22 @@ class ResultModelTestCase(TestCase):
         self.assertEqual(result.lap_set.all()[1], lap2)
 
 
+class RaceSeriesTestCase(TestCase):
+    def test_series_model(self):
+        cyclocross_hu = Series.objects.create(name="cyclocross.hu", year=2016)
+        self.assertEqual(Series.objects.all()[0], cyclocross_hu)
+
+    def test_relations(self):
+        cyclocross_hu = Series.objects.create(name="cyclocross.hu", year=2016)
+        Race.objects.create(name="Crossliget", short_name='crossliget', url="http://crossliget.hu", date=datetime.date(2015,8,30), type='CX', location="Varosliget", series=cyclocross_hu)
+        Race.objects.create(name="Veszprem", short_name='veszprem cx', url="http://vesz.hu", date=datetime.date(2015,8,30), type='CX', location="Veszprem", series=cyclocross_hu)
+
+        races = Race.objects.filter(series=cyclocross_hu)
+
+        self.assertEqual(races[0].series, cyclocross_hu)
+        self.assertEqual(races[1].series, cyclocross_hu)
+
+
 class TestViews(TestCase):
     def test_race_page(self):
         Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2015,8,30), type='XCM', location="Matrahaza")
@@ -54,7 +70,6 @@ class TestViews(TestCase):
 
         response = self.client.get('/', follow=True)
         self.assertEqual(len(response.context_data['races']), 2)
-
 
 
 class CSVLoadTestCase(TestCase):
