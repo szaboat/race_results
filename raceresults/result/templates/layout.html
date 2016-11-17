@@ -1,4 +1,4 @@
-{% load account %}
+{% load account i18n %}
 <html>
 <head>
     <!-- Latest compiled and minified CSS -->
@@ -56,25 +56,25 @@
         </div>
         <div id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Events</a></li>
+                <li><a href="/">{% trans 'Events' %}</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="/your-races/">Your races</a></li>
+                    <li><a href="/your-races/">{% trans 'Your races' %}</a></li>
                 {% endif %}
-                <li><a href="/pages/about/">About</a></li>
-                <li><a href="/pages/contact/">Contact</a></li>
+                <li><a href="/pages/about/">{% trans 'About' %}</a></li>
+                <li><a href="/pages/contact/">{% trans 'Contact' %}</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li>
-                    <a href="/logout/">Log Out</a>
+                    <a href="/logout/">{% trans 'Log Out' %}</a>
                 </li>
             {% else %}
                 <li>
-                    <a href="/login/">Log In</a>
+                    <a href="/login/">{% trans 'Log In' %}</a>
                 </li>
                 <li>
-                    <a href="/signup/">Sign Up</a>
+                    <a href="/signup/">{% trans 'Sign Up' %}</a>
                 </li>
             {% endif %}
             </ul>

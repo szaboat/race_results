@@ -1,16 +1,18 @@
 {% extends 'layout.html' %}
 
+{% load i18n %}
+
 {% block header %}
-    <h1>Events</h1>
+    <h1>{% trans 'Events' %}</h1>
     <p class="lead">
-        Race and event calendar.
+        {% trans 'Race and event calendar.' %}
     </p>
 {% endblock %}}
 
 {% block content %}
     {% if types %}
         <ul class="list-inline">
-            <li><a href="/races/all/"><span class="label label-default">ALL EVENTS</span></a></li>
+            <li><a href="/races/all/"><span class="label label-default">{% trans 'ALL EVENTS' %}</span></a></li>
             {% for type in types %}
                 <li><a href="/races/{{ type.0|lower }}/"><span class="label label-default {{type.0|lower }}">{{ type.0 }}</span></a></li>
             {% endfor %}
@@ -20,11 +22,11 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th class="col-md-3">Name</th>
-                <th class="col-md-2">Series</th>
-                <th class="col-md-3">Location</th>
-                <th class="col-md-1">Type</th>
-                <th class="col-md-2">Date</th>
+                <th class="col-md-3">{% trans 'Race Name' %}</th>
+                <th class="col-md-2">{% trans 'Series' %}</th>
+                <th class="col-md-3">{% trans 'Location' %}</th>
+                <th class="col-md-1">{% trans 'Type' %}</th>
+                <th class="col-md-2">{% trans 'Date' %}</th>
             </tr>
         </thead>
         {% for race in races %}
