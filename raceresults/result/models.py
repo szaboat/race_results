@@ -47,6 +47,7 @@ class Race(models.Model):
         ('CX', 'Cyclocross'),
         ('END', 'Enduro'),
         ('XCM', 'Cross Country Marathon'),
+        ('MTBO', 'MTB Orienteering'),
         ('ROAD', 'Road race'),
         ('XCU', 'Cross Country Ultra'),
         ('TOUR', 'Tour'),
