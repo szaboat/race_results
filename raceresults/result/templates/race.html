@@ -15,7 +15,7 @@
                 </div>
             {% else %}
                 <div class="pull-right">
-                    <form action="{{ race.get_absolue_url }}add/">
+                    <form action="{{ race.get_absolute_url }}add/">
                         <button type="submit" class="btn btn-default btn-primary btn-lg" aria-label="Add to calendar">
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Add to my race calendar
                         </button>
@@ -54,4 +54,20 @@
         {% endfor %}
         </table>
     {% endfor %}
+
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'https://tekerem.hu{{ race.get_absolute_url }}';
+            this.page.identifier = '{{ race.id }}';
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = '//tekerem.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}
