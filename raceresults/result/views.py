@@ -71,6 +71,6 @@ def races_view(request, filter=None):
 
 
 def calendar(request):
-    races = Race.objects.order_by('date').filter(date__year=2016)
-    cal = RaceCalendar(races).formatyear(theyear=2016, width=1)
+    races = Race.objects.order_by('date').filter(date__year=2017)
+    cal = RaceCalendar(races).formatyear(theyear=2017, width=1)
     return TemplateResponse(request, 'calendar.html', {'calendar': mark_safe(cal),})

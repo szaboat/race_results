@@ -3,6 +3,8 @@
 <head>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
@@ -60,7 +62,6 @@
                 {% if user.is_authenticated %}
                     <li><a href="/your-races/">{% trans 'Your races' %}</a></li>
                 {% endif %}
-                {# <li><a href="/pages/about/">{% trans 'About' %}</a></li> #}
                 <li><a href="/pages/contact/">{% trans 'Contact' %}</a></li>
             </ul>
 
@@ -105,6 +106,9 @@
     ga('create', 'UA-8732665-1', 'auto');
     ga('send', 'pageview');
 
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
 </script>
 
 </html>

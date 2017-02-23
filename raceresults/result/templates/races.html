@@ -31,7 +31,7 @@
         </thead>
         {% for race in races %}
             <tr>
-                <td class="col-md-5"><a href="/{{ race.date|date:"Y" }}/{{ race.short_name }}/">{{ race.name }}</a> <a href="{{ race.url }}"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></a></td>
+                <td class="col-md-5"><a href="{{ race.url }}" data-toggle="tooltip" data-placement="top" title="{{ race.url }}"><span class="glyphicon glyphicon-globe" aria-hidden="true" ></span></a> <a href="/{{ race.date|date:"Y" }}/{{ race.short_name }}/">{{ race.name }}</a> </td>
                 <td>{{ race.series|default:'' }}</td>
                 <td>{{ race.location }}</td>
                 <td class="col-md-1"><span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></td>
