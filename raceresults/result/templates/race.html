@@ -23,9 +23,16 @@
                 </div>
             {% endif %}
         {% endif %}
+
 {% endblock %}
 
 {% block content %}
+    <iframe class="row" width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBLoBwkOj0bKVEU3td3S6piYGvNy7O8ipA&origin=Budapest&destination={{ race.location }}&avoid=tolls|highways" allowfullscreen>
+    </iframe>
+
     {% if results_by_category %}
         <h1>Results</h1>
     {% endif %}

@@ -1,7 +1,6 @@
-<h1>{{ race.name }}</h1>
+{% load i18n %}
+
+<h1>{{ race.name }} <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></h1>
 <h2>{{ race.date }}</h2>
-<ul>
-    <li>Race URL: <a href="{{ race.url }}">{{ race.url }}</a></li>
-    <li>Location: {{ race.location }}</li>
-    <li>Type: <span class="label label-default {{ race.type|lower }}">{{ race.type }}</span> </li>
-</ul>
+<h2><a href="{{ race.url }}">{{ race.url }}</a></h2>
+<h2>{% trans 'Location' %}: {{ race.location }}</h2>
