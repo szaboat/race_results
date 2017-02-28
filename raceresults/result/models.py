@@ -51,7 +51,7 @@ class Race(models.Model):
         ('ROAD', 'Road race'),
         ('XCU', 'Cross Country Ultra'),
         ('TOUR', 'Tour'),
-        ('OTHER', 'Other'),
+        ('ETC', 'Other'),
     )
     type = models.CharField(max_length=4, choices=type_choices)
     location = models.CharField(max_length=255)
