@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% load account %}
+{% load account i18n %}
 
 {% block header %}
         <div class="pull-left">
@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-    <iframe class="row" width="600"
+    <iframe class="row" width="100%"
             height="450"
             frameborder="0" style="border:0"
             src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyBLoBwkOj0bKVEU3td3S6piYGvNy7O8ipA&origin=My%20Location&destination={{ race.location }}&avoid=tolls|highways" allowfullscreen>
