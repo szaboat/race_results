@@ -48,6 +48,10 @@
         .label {
             padding-bottom: .2em;
         }
+        footer {
+            background-color: #eee;
+            padding: 2em;
+        }
     </style>
 </head>
 
@@ -91,11 +95,13 @@
 
 <div class="container">
     {% block content %}{% endblock %}
-
-    <footer class="footer">
-        <p>2017 • Tekerem.hu</p>
-    </footer>
 </div>
+
+<footer class="footer">
+    <div class="container">
+        <p>2017 • Tekerem.hu</p>
+    </div>
+</footer>
 
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

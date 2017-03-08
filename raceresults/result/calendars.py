@@ -7,6 +7,7 @@ class AllRacesFeed(ICalFeed):
     product_id = '-//tekerem.hu//Example//EN'
     timezone = 'UTC'
     file_name = "calendar.ics"
+    title = "tekerem.hu versenyek"
 
     def items(self):
         return Race.objects.filter(date__year=2017)
