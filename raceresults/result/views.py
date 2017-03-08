@@ -58,9 +58,9 @@ def races_view(request, filter=None):
     if filter == 'all':
         races = Race.objects.all().order_by('date')
     elif filter:
-        races = Race.objects.filter(type=filter.upper()).order_by('date')
+        races = Race.objects.filter(filter.upper(), date__year=2017).order_by('date')
     else:
-        races = Race.objects.filter(date__gte=datetime.date.today()).order_by('date')
+        races = Race.objects.filter(date__year=2017).order_by('date')
 
     race_types = Race.type_choices
     context = {
