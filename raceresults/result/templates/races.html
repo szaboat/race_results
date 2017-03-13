@@ -16,7 +16,7 @@
             {% for type in types %}
                 <li><a href="/races/{{ type.0|lower }}/"><span class="label label-default {{type.0|lower }}">{{ type.0 }}</span></a></li>
             {% endfor %}
-            <li class="pull-right"><span class="glyphicon glyphicon-calendar" aria-hidden="true" ></span> <a href="/calendar/all/calendar.ics">ICal feed</a></li>
+            <li class="pull-right"><span class="glyphicon glyphicon-calendar" aria-hidden="true" ></span> <a href="/races/all/calendar.ics">ICal feed</a></li>
         </ul>
     {% endif %}
 
