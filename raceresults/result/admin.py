@@ -4,3 +4,4 @@ from .models import Race, Series, Gallery
 
 admin.site.register(Race)
 admin.site.register(Series)
+admin.site.register(Gallery)

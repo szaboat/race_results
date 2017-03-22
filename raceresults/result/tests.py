@@ -80,6 +80,16 @@ class TestGallery(TestCase):
         assert gallery.race == race
 
 
+class TestGalleryRaceCoonection(TestCase):
+    def test_connection(self):
+        race = Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2015,8,30), type='XCM', location="Matrahaza")
+        gallery = Gallery.objects.create(url='https://facebook.com/gallery', race=race)
+        gallery2 = Gallery.objects.create(url='https://facebook.com/gallery2', race=race)
+
+        assert race.galleries[0] == gallery
+        assert race.galleries[1] == gallery2
+
+
 class CSVLoadTestCase(TestCase):
     def test(self):
         race = Race.objects.create(name="Bonyhad", short_name="bonyhad", url="http://akarmi.hu", date=datetime.date(2016,04,03), type='ROAD', location="Bonyhad")

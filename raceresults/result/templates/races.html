@@ -26,7 +26,8 @@
             <tr>
                 <th class="col-md-3">{% trans 'Race Name' %}</th>
                 <th class="col-md-2">{% trans 'Series' %}</th>
-                <th class="col-md-3">{% trans 'Location' %}</th>
+                <th class="col-md-2">{% trans 'Location' %}</th>
+                <th class="col-md-1"></th>
                 <th class="col-md-1">{% trans 'Type' %}</th>
                 <th class="col-md-2">{% trans 'Date' %}</th>
             </tr>
@@ -36,6 +37,13 @@
                 <td class="col-md-5"><a href="{{ race.url }}" data-toggle="tooltip" data-placement="top" title="{{ race.url }}"><span class="glyphicon glyphicon-globe" aria-hidden="true" ></span></a> <a href="/{{ race.date|date:"Y" }}/{{ race.short_name }}/">{{ race.name }}</a> </td>
                 <td>{{ race.series|default:'' }}</td>
                 <td>{{ race.location }}</td>
+                <td>
+                    {% if race.galleries %}
+                        <a href="{{ race.url }}#photos">
+                            <span class="glyphicon glyphicon-camera photos-link" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ race.galleries|length }} {% trans 'photo gallery' %}"></span>
+                        </a>
+                    {% endif %}
+                </td>
                 <td class="col-md-1"><span class="label label-default {{ race.type|lower }}">{{ race.type }}</span></td>
                 <td>{{ race.date|date:"Y-m-d" }} {% if race.days_to_race >= 0 %}<i>in {{ race.days_to_race }} days</i>{% endif %}</td>
             </tr>
