@@ -93,3 +93,9 @@ class Result(models.Model):
             m, s = divmod(self.total_time, 60)
             h, m = divmod(m, 60)
             return '%s:%s:%s' % (h,m,s)
+
+
+class Gallery(models.Model):
+    url = models.URLField()
+    race = models.ForeignKey('Race')
+    created_at = models.DateTimeField(auto_now_add=True)

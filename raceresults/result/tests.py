@@ -6,9 +6,8 @@ import datetime
 
 from django.test import TestCase
 
-# Create your tests here.
 from .helpers import get_time_in_seconds
-from .models import Athlete, Club, Race, Lap, Result, Series
+from .models import Athlete, Club, Race, Lap, Result, Series, Gallery
 
 
 class AthleteModelTestCase(TestCase):
@@ -70,6 +69,15 @@ class TestViews(TestCase):
 
         response = self.client.get('/', follow=True)
         self.assertEqual(len(response.context_data['races']), 2)
+
+
+class TestGallery(TestCase):
+    def test_model(self):
+        race = Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2015,8,30), type='XCM', location="Matrahaza")
+        gallery = Gallery.objects.create(url='https://facebook.com/gallery', race=race)
+
+        assert gallery.url == 'https://facebook.com/gallery'
+        assert gallery.race == race
 
 
 class CSVLoadTestCase(TestCase):
