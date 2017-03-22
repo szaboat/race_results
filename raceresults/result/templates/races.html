@@ -39,7 +39,7 @@
                 <td>{{ race.location }}</td>
                 <td>
                     {% if race.galleries %}
-                        <a href="{{ race.url }}#photos">
+                        <a href="{{ race.get_absolute_url }}#photos">
                             <span class="glyphicon glyphicon-camera photos-link" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ race.galleries|length }} {% trans 'photo gallery' %}"></span>
                         </a>
                     {% endif %}
