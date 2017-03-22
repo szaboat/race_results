@@ -27,6 +27,21 @@
 {% endblock %}
 
 {% block content %}
+
+    {% if race.galleries %}
+        <h1><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> {% trans 'Photos' %}</h1>
+        <ul class="xxl">
+            {% for gallery in race.galleries %}
+                <li>
+                    <a href="{{ gallery.url }}">
+                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                        {{ gallery.url }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <iframe class="row" width="100%"
             height="450"
             frameborder="0" style="border:0"
