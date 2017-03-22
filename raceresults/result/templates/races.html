@@ -40,7 +40,7 @@
                 <td>
                     {% if race.galleries %}
                         <a href="{{ race.get_absolute_url }}#photos">
-                            <span class="glyphicon glyphicon-camera photos-link" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ race.galleries|length }} {% trans 'photo gallery' %}"></span>
+                            <span class="glyphicon glyphicon-camera photos-link" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ race.galleries|length }} galler{{ race.galleries|pluralize:"y,ies" }}"></span>
                         </a>
                     {% endif %}
                 </td>
