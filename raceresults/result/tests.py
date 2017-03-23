@@ -4,7 +4,10 @@
 import csv
 import datetime
 
+import icalendar
+from django.test import RequestFactory
 from django.test import TestCase
+from six import b
 
 from .helpers import get_time_in_seconds
 from .models import Athlete, Club, Race, Lap, Result, Series, Gallery
@@ -80,14 +83,38 @@ class TestGallery(TestCase):
         assert gallery.race == race
 
 
-class TestGalleryRaceCoonection(TestCase):
+class TestGalleryRaceConnection(TestCase):
     def test_connection(self):
         race = Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2015,8,30), type='XCM', location="Matrahaza")
         gallery = Gallery.objects.create(url='https://facebook.com/gallery', race=race)
         gallery2 = Gallery.objects.create(url='https://facebook.com/gallery2', race=race)
 
-        assert race.galleries[0] == gallery
-        assert race.galleries[1] == gallery2
+        self.assertEqual(race.galleries[0], gallery)
+        self.assertEqual(race.galleries[1], gallery2)
+
+
+class TestCalendarView(TestCase):
+    def test_all_calendar(self):
+        response = self.client.get('/races/all/calendar.ics')
+
+        calendar_feed = icalendar.Calendar.from_ical(response.content)
+        self.assertEqual(calendar_feed['X-WR-CALNAME'], 'tekerem.hu versenyek')
+
+    def test_all_calendar_items(self):
+        Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2017, 8, 30), type='XCM', location="Matrahaza")
+        response = self.client.get('/races/all/calendar.ics')
+
+        calendar_feed = icalendar.Calendar.from_ical(response.content)
+
+        self.assertEqual(len(calendar_feed.subcomponents), 1)
+        self.assertEqual(calendar_feed.subcomponents[0]['SUMMARY'], 'Matramaraton')
+        self.assertEqual(calendar_feed.subcomponents[0]['DESCRIPTION'], 'http://topmaraton.hu')
+        self.assertEqual(calendar_feed.subcomponents[0]['DTSTART'].to_ical(), b('20170830'))
+
+
+
+
+
 
 
 class CSVLoadTestCase(TestCase):
