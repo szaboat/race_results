@@ -94,6 +94,12 @@ class TestGalleryRaceConnection(TestCase):
 
 
 class TestCalendarView(TestCase):
+    def setUp(self):
+        Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu",
+                            date=datetime.date(2017, 8, 30), type='XCM', location="Matrahaza")
+        Race.objects.create(name="Crosskovacsi XCO", short_name="crosskovacsi", url="http://crosskovacsi.hu",
+                            date=datetime.date(2017, 8, 31), type='XCO', location="Nagykovacsi")
+
     def test_all_calendar(self):
         response = self.client.get('/races/all/calendar.ics')
 
@@ -101,20 +107,37 @@ class TestCalendarView(TestCase):
         self.assertEqual(calendar_feed['X-WR-CALNAME'], 'tekerem.hu versenyek')
 
     def test_all_calendar_items(self):
-        Race.objects.create(name="Matramaraton", short_name="matramaraton", url="http://topmaraton.hu", date=datetime.date(2017, 8, 30), type='XCM', location="Matrahaza")
         response = self.client.get('/races/all/calendar.ics')
 
         calendar_feed = icalendar.Calendar.from_ical(response.content)
 
-        self.assertEqual(len(calendar_feed.subcomponents), 1)
+        self.assertEqual(len(calendar_feed.subcomponents), 2)
+        self.assertEqual(calendar_feed['X-WR-CALNAME'], 'tekerem.hu versenyek')
         self.assertEqual(calendar_feed.subcomponents[0]['SUMMARY'], 'Matramaraton')
         self.assertEqual(calendar_feed.subcomponents[0]['DESCRIPTION'], 'http://topmaraton.hu')
         self.assertEqual(calendar_feed.subcomponents[0]['DTSTART'].to_ical(), b('20170830'))
 
+    def test_filtered_feed(self):
+        response = self.client.get('/races/xcm/calendar.ics')
 
+        calendar_feed = icalendar.Calendar.from_ical(response.content)
 
+        self.assertEqual(len(calendar_feed.subcomponents), 1)
+        self.assertEqual(calendar_feed['X-WR-CALNAME'], 'tekerem.hu XCM versenyek')
+        self.assertEqual(calendar_feed.subcomponents[0]['SUMMARY'], 'Matramaraton')
+        self.assertEqual(calendar_feed.subcomponents[0]['DESCRIPTION'], 'http://topmaraton.hu')
+        self.assertEqual(calendar_feed.subcomponents[0]['DTSTART'].to_ical(), b('20170830'))
 
+    def test_filtered_feed_different_type(self):
+        response = self.client.get('/races/xco/calendar.ics')
 
+        calendar_feed = icalendar.Calendar.from_ical(response.content)
+
+        self.assertEqual(len(calendar_feed.subcomponents), 1)
+        self.assertEqual(calendar_feed['X-WR-CALNAME'], 'tekerem.hu XCO versenyek')
+        self.assertEqual(calendar_feed.subcomponents[0]['SUMMARY'], 'Crosskovacsi XCO')
+        self.assertEqual(calendar_feed.subcomponents[0]['DESCRIPTION'], 'http://crosskovacsi.hu')
+        self.assertEqual(calendar_feed.subcomponents[0]['DTSTART'].to_ical(), b('20170831'))
 
 
 class CSVLoadTestCase(TestCase):

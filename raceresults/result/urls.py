@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from .calendars import AllRacesFeed
+from .calendars import AllRacesFeed, FilteredRacesFeed
 from . import views
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
 
     # feeds
     url(r'^races/all/calendar.ics$', AllRacesFeed()),
+    url(r'^races/(?P<filter>[a-z]+)/calendar.ics$', FilteredRacesFeed()),
 
     url(r'^races/(?P<filter>[a-z]+)/', views.races_view),
     url(r'^pages/', include('django.contrib.flatpages.urls')),
