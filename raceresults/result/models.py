@@ -1,12 +1,9 @@
 from __future__ import unicode_literals
 
-import time
-
 import datetime
 
 from django.db import models
-
-# Create your models here.
+from django_countries.fields import CountryField
 
 
 class Athlete(models.Model):
@@ -57,6 +54,7 @@ class Race(models.Model):
     location = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     series = models.ForeignKey(Series, null=True, blank=True)
+    country = CountryField(max_length=2, null=True, blank=True)
 
     @property
     def days_to_race(self):

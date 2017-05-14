@@ -27,6 +27,13 @@ class ClubModelTestCase(TestCase):
         self.assertEqual(club, expected_club)
 
 
+class RaceModelTestCase(TestCase):
+    def test(self):
+        race = Race.objects.create(name='Salzkammergut Trophy', date=datetime.date.today(), country="HU")
+        self.assertEqual(race.country, "HU")
+        self.assertEqual(race.country.name, "Hungary")
+
+
 class ResultModelTestCase(TestCase):
     def test_cruds(self):
         athlete = Athlete.objects.create(name='Denes Arvay', year_of_birth=1981)
