@@ -75,6 +75,7 @@
                 <li><a href="/pages/contact/">{% trans 'Contact' %}</a></li>
             </ul>
 
+            {% comment %}
             <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
                 <li>
@@ -89,6 +90,7 @@
                 </li>
             {% endif %}
             </ul>
+            {% endcomment %}
         </div>
     </div>
 </nav>
