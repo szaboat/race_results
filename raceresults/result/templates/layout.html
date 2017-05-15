@@ -69,9 +69,10 @@
         <div id="navbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">{% trans 'Events' %}</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="/your-races/">{% trans 'Your races' %}</a></li>
-                {% endif %}
+{#                {% if user.is_authenticated %}#}
+{#                    <li><a href="/your-races/">{% trans 'Your races' %}</a></li>#}
+{#                {% endif %}#}
+                <li><a href="https://goo.gl/forms/ftqqfQjN7UAXVbx93">Esemény beküldése</a></li>
                 <li><a href="/pages/contact/">{% trans 'Contact' %}</a></li>
             </ul>
 
