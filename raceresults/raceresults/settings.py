@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'opbeat.contrib.django',
     'autofixture',
-    'django_countries'
+    'django_countries',
+    'rest_framework',
 ]
 
 OPBEAT = {
@@ -56,6 +57,13 @@ OPBEAT = {
     'SECRET_TOKEN': 'e6418af6a1bdd15fac586877013ac75492fba1a0',
 }
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 MIDDLEWARE_CLASSES = [
     'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
