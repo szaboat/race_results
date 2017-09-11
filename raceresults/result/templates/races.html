@@ -5,7 +5,7 @@
 {% block header %}
     <h1>{% trans 'Events' %}</h1>
     <p class="lead">
-        {% trans 'Race and event calendar.' %}
+        Tekerem.hu - {% trans 'Race and event calendar.' %}
     </p>
 {% endblock %}}
 
@@ -21,6 +21,7 @@
     {% endif %}
 
     <h2>Események a következő 30 napban</h2>
+
     <table class="table">
         <thead>
             <tr>
@@ -50,6 +51,7 @@
         {% endfor %}
     </table>
     
+    <h2>2017-es események</h2>
     <table class="table">
         <thead>
             <tr>
