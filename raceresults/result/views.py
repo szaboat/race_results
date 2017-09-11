@@ -63,9 +63,15 @@ def races_view(request, filter=None):
         races = Race.objects.filter(date__year=2017).order_by('date')
 
     race_types = Race.type_choices
+
+    today = datetime.date.today()
+    thirty_days = today + datetime.timedelta(days=30)
+    next_month_races = Race.objects.filter(date__range=[today, thirty_days])
+
     context = {
         'races': races,
-        'types': race_types
+        'types': race_types,
+        'next_month_races': next_month_races
     }
     return TemplateResponse(request, 'races.html', context)
 

@@ -88,6 +88,7 @@ class Result(models.Model):
     race_number = models.CharField(max_length=5)
     imported_at = models.DateTimeField()
     category = models.CharField(max_length=20, null=True, blank=True)
+    cohort = models.CharField(max_length=10)
 
     @property
     def time(self):
