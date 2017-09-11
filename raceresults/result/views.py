@@ -66,7 +66,7 @@ def races_view(request, filter=None):
 
     today = datetime.date.today()
     thirty_days = today + datetime.timedelta(days=30)
-    next_month_races = Race.objects.filter(date__range=[today, thirty_days])
+    next_month_races = Race.objects.filter(date__range=[today, thirty_days]).order_by('date')
 
     context = {
         'races': races,
