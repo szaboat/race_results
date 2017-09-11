@@ -71,7 +71,8 @@ def races_view(request, filter=None):
     context = {
         'races': races,
         'types': race_types,
-        'next_month_races': next_month_races
+        'next_month_races': next_month_races,
+        'show_next_30': filter is None
     }
     return TemplateResponse(request, 'races.html', context)
 
