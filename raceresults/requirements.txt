@@ -11,4 +11,4 @@ django-ical==1.7.1
 django-countries==6.1.2
 djangorestframework==3.11.1
 
-whitenoise==3.3.0
+whitenoise==5.2.0
