@@ -9,6 +9,6 @@ django-autofixture==0.12.1
 
 django-ical==1.8.4
 django-countries==7.5.1
-djangorestframework==3.4.1
+djangorestframework==3.14.0
 
 whitenoise==3.3.0
