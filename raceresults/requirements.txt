@@ -2,7 +2,7 @@ Django==4.2.4
 wheel==0.41.1
 psycopg2==2.9.7
 
-django-allauth==0.31.0
+django-allauth==0.54.0
 
 opbeat==3.5.2
 django-autofixture==0.12.1
