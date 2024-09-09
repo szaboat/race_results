@@ -7,7 +7,7 @@ django-allauth==64.2.1
 opbeat==3.6.1
 django-autofixture==0.12.1
 
-django-ical==1.4
+django-ical==1.9.2
 django-countries==4.5
 djangorestframework==3.4.1
 
