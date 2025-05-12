@@ -1,6 +1,6 @@
 Django==5.2.1
 wheel==0.46.1
-psycopg2==2.6.2
+psycopg2==2.9.10
 
 django-allauth==0.31.0
 
