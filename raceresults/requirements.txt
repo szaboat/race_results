@@ -1,14 +1,14 @@
-Django==1.10.5
-wheel==0.29.0
-psycopg2==2.6.2
+Django==6.1
+wheel==0.48.0
+psycopg2==2.9.12
 
-django-allauth==0.31.0
+django-allauth==65.19.1
 
-opbeat==3.5.2
+opbeat==3.6.1
 django-autofixture==0.12.1
 
-django-ical==1.4
-django-countries==4.5
-djangorestframework==3.4.1
+django-ical==1.9.2
+django-countries==9.0.0
+djangorestframework==3.18.0
 
-whitenoise==3.3.0
+whitenoise==6.12.0
